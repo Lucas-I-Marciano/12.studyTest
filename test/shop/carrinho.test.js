@@ -1,6 +1,3 @@
-// Testar lançamento de erro
-// Ver coverage
-// Testar restante
 import Carrinho from "../../shop/carrinho";
 import Item from "../../shop/item.js";
 
@@ -51,5 +48,15 @@ describe("Teste de Carrinho", () => {
     expect(() => {
       carrinho.finalizaCompra();
     }).toThrow("Carrinho de compras vazio");
+  });
+
+  it("Deve calcular valor final", () => {
+    const carrinho = new Carrinho();
+    const item = new Item("Banana", 7, 2);
+    const item2 = new Item("Manga", 4, 4);
+
+    carrinho.adiciona(item);
+    carrinho.adiciona(item2);
+    expect(carrinho.calculaTotal()).toBe(30);
   });
 });
