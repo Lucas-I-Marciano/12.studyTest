@@ -1,4 +1,3 @@
-// Testar deve ter a propriedade
 // Testar lançamento de erro
 // Ver coverage
 // Testar restante
@@ -42,5 +41,15 @@ describe("Teste de Carrinho", () => {
     expect(carrinho).toHaveProperty("itens");
     expect(carrinho).toHaveProperty("subtotal");
     expect(carrinho).toHaveProperty("total");
+  });
+
+  it("Deve lançar erro", () => {
+    const carrinho = new Carrinho();
+    expect(() => {
+      carrinho.finalizaCompra();
+    }).toThrow();
+    expect(() => {
+      carrinho.finalizaCompra();
+    }).toThrow("Carrinho de compras vazio");
   });
 });
