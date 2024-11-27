@@ -59,4 +59,19 @@ describe("Teste de Carrinho", () => {
     carrinho.adiciona(item2);
     expect(carrinho.calculaTotal()).toBe(30);
   });
+
+  it("Deve finalizar carrinho", () => {
+    const carrinho = new Carrinho();
+    const item = new Item("Banana", 7, 2);
+    const item2 = new Item("Manga", 4, 4);
+
+    carrinho.adiciona(item);
+    carrinho.adiciona(item2);
+    carrinho.adicionaFrete(20);
+    expect(carrinho.finalizaCompra()).toEqual({
+      subtotal: 30,
+      frete: 20,
+      total: 50,
+    });
+  });
 });
