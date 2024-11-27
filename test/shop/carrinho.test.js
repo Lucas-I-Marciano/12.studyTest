@@ -1,4 +1,3 @@
-// Testar deve iniciar vazio
 // Testar deve ter itens
 // Testar deve conter
 // Testar deve ter a propriedade
@@ -6,6 +5,7 @@
 // Ver coverage
 // Testar restante
 import Carrinho from "../../shop/carrinho";
+import Item from "../../shop/item.js";
 
 describe("Teste de Carrinho", () => {
   it("Deve iniciar vazio", () => {
@@ -15,5 +15,18 @@ describe("Teste de Carrinho", () => {
     expect(carrinho.frete).toBeNull();
     expect(carrinho.subtotal).toBeNull();
     expect(carrinho.total).toBeNull();
+  });
+
+  it("Deve conter itens", () => {
+    const carrinho = new Carrinho();
+    const item = new Item("Banana", 7, 2);
+    const item2 = new Item("Manga", 4, 4);
+
+    carrinho.adiciona(item);
+    carrinho.adiciona(item2);
+
+    expect(carrinho.itens).toContain(item);
+    expect(carrinho.itens).toContain(item2);
+    expect(item.pegaValorTotalItem()).toBe(14);
   });
 });
