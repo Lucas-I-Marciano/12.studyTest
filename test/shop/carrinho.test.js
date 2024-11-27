@@ -1,5 +1,3 @@
-// Testar deve ter itens
-// Testar deve conter
 // Testar deve ter a propriedade
 // Testar lançamento de erro
 // Ver coverage
@@ -35,5 +33,14 @@ describe("Teste de Carrinho", () => {
     carrinho.adicionaFrete(200);
 
     expect(carrinho.frete).toBe(200);
+  });
+
+  it("Deve conter a propriedade frete, itens, subtotal e total", () => {
+    const carrinho = new Carrinho();
+
+    expect(carrinho).toHaveProperty("frete");
+    expect(carrinho).toHaveProperty("itens");
+    expect(carrinho).toHaveProperty("subtotal");
+    expect(carrinho).toHaveProperty("total");
   });
 });
