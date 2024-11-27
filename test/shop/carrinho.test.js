@@ -29,4 +29,11 @@ describe("Teste de Carrinho", () => {
     expect(carrinho.itens).toContain(item2);
     expect(item.pegaValorTotalItem()).toBe(14);
   });
+
+  it("Deve adicionar Frete", () => {
+    const carrinho = new Carrinho();
+    carrinho.adicionaFrete(200);
+
+    expect(carrinho.frete).toBe(200);
+  });
 });
