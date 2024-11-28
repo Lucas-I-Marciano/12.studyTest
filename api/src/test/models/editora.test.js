@@ -10,4 +10,18 @@ describe("Testes do Modelo Editora", () => {
     const editora = new Editora(objetoEditora);
     expect(editora).toEqual(expect.objectContaining(objetoEditora));
   });
+
+  it("Deve salvar no BD", async () => {
+    const editora = new Editora(objetoEditora);
+    const dados = await editora.salvar(editora);
+
+    expect(dados).toEqual(
+      expect.objectContaining({
+        id: expect.any(Number),
+        ...objetoEditora,
+        created_at: expect.any(String),
+        updated_at: expect.any(String),
+      })
+    );
+  });
 });
