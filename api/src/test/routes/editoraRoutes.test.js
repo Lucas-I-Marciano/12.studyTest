@@ -1,8 +1,8 @@
 import app from "../../app.js";
 import request from "supertest";
-import { expect } from "@jest/globals";
+import { describe, expect } from "@jest/globals";
 
-const port = 3000;
+const port = 3001;
 
 let server;
 
@@ -31,5 +31,14 @@ describe("GET em /editoras", () => {
       .expect(200);
 
     expect(dado.body[0]).toBeUndefined();
+  });
+});
+
+describe("POST em /editoras", () => {
+  it("Deve criar uma editora", async () => {
+    const response = await request(app)
+      .post("/editoras")
+      .send({ nome: "Ateliê", cidade: "São Paulo", email: "a@a.com" })
+      .expect(201);
   });
 });
