@@ -14,6 +14,9 @@ class EditorasController {
     const { params } = req;
     try {
       const resultado = await Editora.pegarPeloId(params.id);
+      if (!resultado) {
+        return res.status(204).json(resultado);
+      }
       return res.status(200).json(resultado);
     } catch (err) {
       return res.status(500).json(err.message);
