@@ -32,6 +32,10 @@ describe("GET em /editoras", () => {
 
     expect(dado.body[0]).toBeUndefined();
   });
+
+  it("Deve retornar sucesso e corpo vazio", async () => {
+    await request(app).get("/editoras/9999999999999999999999").expect(204);
+  });
 });
 
 let id;
