@@ -57,8 +57,17 @@ describe("POST em /editoras", () => {
   });
 });
 
+describe("PUT em /editoras", () => {
+  it("Deve alterar campo da editora", async () => {
+    await request(app).put(`/editoras/${id}`).expect(200);
+  });
+});
+
 describe("DELETE em /editoras", () => {
   it("Deve deletar uma editora", async () => {
-    await request(app).delete(`/editoras/${id}`).expect(200);
+    await request(app)
+      .delete(`/editoras/${id}`)
+      .send({ nome: "Lucas" })
+      .expect(204);
   });
 });
