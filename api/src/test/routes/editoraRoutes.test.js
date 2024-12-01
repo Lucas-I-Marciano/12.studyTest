@@ -34,17 +34,27 @@ describe("GET em /editoras", () => {
   });
 });
 
+let id;
+
 describe("POST em /editoras", () => {
   it("Deve criar uma editora", async () => {
     const response = await request(app)
       .post("/editoras")
       .send({ nome: "Ateliê", cidade: "São Paulo", email: "a@a.com" })
       .expect(201);
+    console.log(response.body);
+    id = response.body["content"]["id"];
   });
   it("Não deve criar uma editora", async () => {
     const response = await request(app)
       .post("/editoras")
       .send({ cidade: "São Paulo", email: "a@a.com" })
       .expect(400);
+  });
+});
+
+describe("DELETE em /editoras", () => {
+  it("Deve deletar uma editora", async () => {
+    await request(app).delete(`/editoras/${id}`).expect(200);
   });
 });
