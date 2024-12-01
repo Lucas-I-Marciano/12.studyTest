@@ -46,7 +46,6 @@ describe("POST em /editoras", () => {
       .post("/editoras")
       .send({ nome: "Ateliê", cidade: "São Paulo", email: "a@a.com" })
       .expect(201);
-    console.log(response.body);
     id = response.body["content"]["id"];
   });
   it("Não deve criar uma editora", async () => {
@@ -57,12 +56,15 @@ describe("POST em /editoras", () => {
   });
 });
 
-describe("PUT em /editoras", () => {
-  it("Deve alterar campo da editora", async () => {
-    await request(app)
-      .put(`/editoras/${id}`)
-      .send({ nome: "Lucas" })
-      .expect(200);
+describe.each([
+  //prettier-ignore
+  { nome: "Lucas" },
+  { cidade: "SJC" },
+  { email: "l@l" },
+])("PUT em /editoras", (myObject) => {
+  it(`Deve alterar ${Object.keys(myObject)[0]} da editora`, async () => {
+    console.log(myObject);
+    await request(app).put(`/editoras/${id}`).send(myObject).expect(200);
   });
 });
 
