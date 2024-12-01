@@ -41,4 +41,10 @@ describe("POST em /editoras", () => {
       .send({ nome: "Ateliê", cidade: "São Paulo", email: "a@a.com" })
       .expect(201);
   });
+  it("Não deve criar uma editora", async () => {
+    const response = await request(app)
+      .post("/editoras")
+      .send({ cidade: "São Paulo", email: "a@a.com" })
+      .expect(400);
+  });
 });
