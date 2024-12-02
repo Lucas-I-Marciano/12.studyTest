@@ -1,6 +1,6 @@
 import app from "../../app.js";
 import request from "supertest";
-import { describe, expect } from "@jest/globals";
+import { describe, expect, jest } from "@jest/globals";
 
 const port = 3001;
 
@@ -70,6 +70,11 @@ describe.each([
 
 describe("DELETE em /editoras", () => {
   it("Deve deletar uma editora", async () => {
-    await request(app).delete(`/editoras/${id}`).expect(200);
+    const requisicaoObjeto = { request };
+    const spy = jest.spyOn(requisicaoObjeto, "request");
+
+    await requisicaoObjeto.request(app).delete(`/editoras/${id}`).expect(200);
+
+    expect(spy).toHaveBeenCalled();
   });
 });
